@@ -1,406 +1,507 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Portfólio | Desenvolvedor Full Stack</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Criação de Sites e Sistemas | Anderson Melo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        .navbar {
-            background: rgba(15,15,15,0.85);
-        }
-
-        .hero {
-            min-height: 100vh;
-            background: radial-gradient(circle at top right, #1a1a2e, #0f0f0f);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            text-align: center;
-        }
-
-        .text-gradient {
-            background: linear-gradient(90deg, #0d6efd, #20c997);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
-        .card {
-            border: none;
-            border-radius: 18px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            transition: .3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        footer {
-            background: #111;
-            color: #aaa;
-        }/* Hover 3D Cards */
-.card {
-    transform-style: preserve-3d;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    will-change: transform;
+<style>
+body{
+    font-family: 'Inter', sans-serif;
+    line-height:1.6;
+    color:#333;
 }
 
-.card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 18px;
-    background: radial-gradient(
-        circle at var(--x, 50%) var(--y, 50%),
-        rgba(255,255,255,0.15),
-        transparent 60%
-    );
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
+section{
+    padding:80px 0;
 }
 
-.card:hover::after {
-    opacity: 1;
+.hero{
+    min-height:100vh;
+    background:radial-gradient(circle at top right,#1a1a2e,#0f0f0f);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    text-align:center;
 }
-    .whatsapp-fixo {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: #fff;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    font-size: 32px;
-    display: flex;
+/* ===== BOTÕES HERO ===== */
+.hero .btn {
+    padding: 14px 28px;
+    font-weight: 600;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+    gap: 8px;
 }
 
-.whatsapp-fixo:hover {
-    transform: scale(1.1);
+/* Botão principal (WhatsApp) */
+.hero .btn-primary {
+    background: linear-gradient(135deg, #0d6efd, #3b82f6);
+    border: none;
+    box-shadow: 0 10px 25px rgba(13,110,253,0.35);
+}
+
+.hero .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(13,110,253,0.45);
+}
+
+/* Botão secundário */
+.hero .btn-outline-light {
+    border: 2px solid rgba(255,255,255,0.7);
     color: #fff;
 }
-    </style>
+
+.hero .btn-outline-light:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-3px);
+}
+
+/* Espaçamento no mobile */
+@media (max-width: 576px) {
+    .hero .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero .btn + .btn {
+        margin-top: 12px;
+    }
+}
+.text-gradient{
+    background:linear-gradient(90deg,#0d6efd,#20c997);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.section-title{
+    text-align:center;
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 45px rgba(0,0,0,.12);
+}
+
+.card p{
+    text-align:justify;
+}
+
+.bg-light{
+    background:#f8f9fb!important;
+}
+
+.badge{
+    font-size:.75rem;
+    padding:.5em .8em;
+}
+
+#precos .card h3{
+    font-size:2rem;
+}
+
+.list-group-item{
+    border:none;
+    padding:.6rem 0;
+}
+
+footer{
+    background:#111;
+    color:#aaa;
+}
+
+.whatsapp-fixo{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    background:#25d366;
+    color:#fff;
+    font-size:30px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+    transition:.3s;
+    z-index:999;
+}
+
+.whatsapp-fixo:hover{
+    transform:scale(1.1);
+    color:#fff;
+}
+
+@media(max-width:768px){
+    p{text-align:left;}
+    section{padding:60px 20px;}
+}
+/* ===== SEÇÃO DE PREÇOS ===== */
+#precos {
+    padding: 80px 0;
+}
+
+#precos .card {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#precos .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.10);
+}
+
+/* Títulos */
+#precos h5 {
+    font-size: 1.25rem;
+}
+
+/* Preço */
+#precos h3 {
+    font-size: 2.2rem;
+}
+
+/* Lista */
+#precos ul {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+#precos ul li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* Botões */
+#precos .btn {
+    padding: 14px 20px;
+    font-weight: 600;
+    border-radius: 30px;
+    width: 100%;
+}
+
+/* Plano destaque */
+#precos .border-primary {
+    transform: scale(1.05);
+}
+
+#precos .badge {
+    align-self: center;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    #precos .border-primary {
+        transform: none;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="#home">PORTFOLIO</a>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
 <!-- HERO -->
-<header id="home" class="hero">
-    <div class="container">
-        <h1 class="display-4 fw-bold">
-            Desenvolvedor <span class="text-gradient">Full Stack</span>
-        </h1>
-        <p class="lead mt-3 mb-4">
-            Sistemas web modernos, seguros e escaláveis.
-        </p>
-        <a href="#projetos" class="btn btn-primary btn-lg me-2">Ver Projetos</a>
-        <a href="#contato" class="btn btn-outline-light btn-lg">Contato</a>
-    </div>
+<header class="hero">
+<div class="container">
+<h1 class="display-4 fw-bold">
+Sites e Sistemas que <span class="text-gradient">Geram Resultados</span>
+</h1>
+
+<p class="lead mt-4">
+Desenvolvimento profissional de sites, landing pages e sistemas web
+pensados para aumentar sua autoridade, conversão e faturamento.
+</p>
+
+<div class="mt-5 d-flex flex-wrap gap-3">
+    <a href="#contato" class="btn btn-primary btn-lg">
+        <i class="bi bi-whatsapp"></i> Solicitar Orçamento
+    </a>
+
+    <a href="#servicos" class="btn btn-outline-light btn-lg">
+        Ver Serviços
+    </a>
+</div>
+</div>
 </header>
 
-<!-- SKILLS -->
-<section id="skills" class="bg-light">
+<!-- BENEFÍCIOS -->
+<section class="bg-light">
+<div class="container">
+<h2 class="section-title fw-bold mb-5">Por que escolher meu trabalho?</h2>
+
+<div class="row g-4">
+<div class="col-md-4">
+<div class="card p-4 h-100 text-center">
+<i class="bi bi-graph-up-arrow display-6 text-primary"></i>
+<h5 class="fw-bold mt-3">Foco em Conversão</h5>
+<p>Sites pensados para transformar visitantes em clientes reais.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-4 h-100 text-center">
+<i class="bi bi-shield-check display-6 text-success"></i>
+<h5 class="fw-bold mt-3">Segurança e Performance</h5>
+<p>Boas práticas de código, segurança e carregamento rápido.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-4 h-100 text-center">
+<i class="bi bi-phone display-6 text-warning"></i>
+<h5 class="fw-bold mt-3">100% Responsivo</h5>
+<p>Experiência perfeita em celular, tablet e computador.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+<div class="container">
+<h2 class="section-title fw-bold mb-5">Serviços</h2>
+<div class="row g-4">
+<div class="col-md-4"><div class="card p-4 h-100"><h5 class="fw-bold">Landing Pages</h5><p>Páginas rápidas, objetivas e focadas em conversão.</p></div></div>
+<div class="col-md-4"><div class="card p-4 h-100"><h5 class="fw-bold">Sites Profissionais</h5><p>Sites institucionais modernos e confiáveis.</p></div></div>
+<div class="col-md-4"><div class="card p-4 h-100"><h5 class="fw-bold">Sistemas / CRM</h5><p>Automação e gestão sob medida.</p></div></div>
+<div class="col-md-4"><div class="card p-4 h-100"><h5 class="fw-bold">E-commerce</h5><p>Lojas virtuais completas e seguras.</p></div></div>
+<div class="col-md-4"><div class="card p-4 h-100"><h5 class="fw-bold">Manutenção</h5><p>Suporte contínuo e melhorias.</p></div></div>
+</div>
+</div>
+</section>
+<!-- SERVIÇOS DE TI - VALORES -->
+<section id="servicos-ti" class="bg-light">
+<div class="container">
+
+<h2 class="section-title fw-bold mb-3">Serviços de TI e Infraestrutura</h2>
+<p class="text-center mb-5">
+Soluções técnicas para manter sua empresa segura, produtiva e estável.
+</p>
+
+<div class="row g-4 justify-content-center">
+
+    <!-- MANUTENÇÃO COMPUTADORES -->
+    <div class="col-md-4">
+        <div class="card p-4 h-100 text-center d-flex">
+            <i class="bi bi-pc-display display-6 text-primary mb-3"></i>
+            <h5 class="fw-bold">Manutenção de Computadores</h5>
+            <p class="text-muted">Suporte técnico para desktops e notebooks</p>
+
+            <h3 class="fw-bold text-primary my-3">R$ 150</h3>
+            <small class="text-muted">por atendimento</small>
+
+            <ul class="list-unstyled text-start mt-3">
+                <li>✔ Formatação e reinstalação</li>
+                <li>✔ Remoção de vírus</li>
+                <li>✔ Upgrade e otimização</li>
+                <li>✔ Diagnóstico completo</li>
+            </ul>
+
+            <a href="https://wa.me/5521982846871?text=Olá!%20Tenho%20interesse%20na%20manutenção%20de%20computadores."
+               target="_blank"
+               class="btn btn-outline-primary mt-auto">
+                Solicitar atendimento
+            </a>
+        </div>
+    </div>
+
+    <!-- SERVIDORES -->
+    <div class="col-md-4">
+        <div class="card p-4 h-100 text-center d-flex border border-primary">
+            <span class="badge bg-primary mb-3">Empresas</span>
+
+            <i class="bi bi-hdd-network display-6 text-primary mb-3"></i>
+            <h5 class="fw-bold">Administração de Servidores</h5>
+            <p class="text-muted">Windows Server e Linux</p>
+
+            <h3 class="fw-bold text-primary my-3">R$ 400</h3>
+            <small class="text-muted">por servidor / mês</small>
+
+            <ul class="list-unstyled text-start mt-3">
+                <li>✔ Usuários e permissões</li>
+                <li>✔ Backups automatizados</li>
+                <li>✔ Monitoramento</li>
+                <li>✔ Segurança e atualizações</li>
+            </ul>
+
+            <a href="https://wa.me/5521982846871?text=Olá!%20Tenho%20interesse%20na%20administração%20de%20servidores."
+               target="_blank"
+               class="btn btn-primary mt-auto">
+                Quero este plano
+            </a>
+        </div>
+    </div>
+
+    <!-- REDES -->
+    <div class="col-md-4">
+        <div class="card p-4 h-100 text-center d-flex">
+            <i class="bi bi-router display-6 text-primary mb-3"></i>
+            <h5 class="fw-bold">Manutenção de Redes</h5>
+            <p class="text-muted">Infraestrutura e conectividade</p>
+
+            <h3 class="fw-bold text-primary my-3">A partir de R$ 300</h3>
+            <small class="text-muted">por serviço</small>
+
+            <ul class="list-unstyled text-start mt-3">
+                <li>✔ Configuração de rede</li>
+                <li>✔ Wi-Fi corporativo</li>
+                <li>✔ Firewall e segurança</li>
+                <li>✔ Suporte e correções</li>
+            </ul>
+
+            <a href="https://wa.me/5521982846871?text=Olá!%20Tenho%20interesse%20em%20manutenção%20de%20redes."
+               target="_blank"
+               class="btn btn-outline-primary mt-auto">
+                Solicitar orçamento
+            </a>
+        </div>
+    </div>
+
+</div>
+</div>
+</section>
+  
+<!-- PREÇOS -->
+<section id="precos" class="bg-light">
     <div class="container">
-        <h2 class="section-title text-center fw-bold mb-5">Stack Tecnológica</h2>
-        <div class="row g-4 text-center">
+        <h2 class="section-title fw-bold mb-3 text-center">Planos e Investimento</h2>
+        <p class="text-center mb-5">
+            Escolha o plano ideal para o seu negócio. Projetos personalizados podem ser orçados sob demanda.
+        </p>
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- LANDING PAGE -->
             <div class="col-md-4">
-                <div class="card p-4 h-100">
-                    <i class="bi bi-laptop display-6 text-primary"></i>
-                    <h5 class="fw-bold mt-3">Front-end</h5>
-                    <p>HTML, CSS, Bootstrap, JavaScript</p>
+                <div class="card p-4 h-100 text-center d-flex">
+                    <h5 class="fw-bold">Landing Page</h5>
+                    <p class="text-muted">Ideal para anúncios e conversão</p>
+
+                    <h3 class="fw-bold text-primary my-3">R$ 497</h3>
+
+                    <ul class="list-unstyled text-start">
+                        <li>✔ Página única</li>
+                        <li>✔ Design profissional</li>
+                        <li>✔ Responsivo</li>
+                        <li>✔ Integração com WhatsApp</li>
+                        <li>✔ Formulário de contato</li>
+                    </ul>
+
+                    <a href="https://wa.me/5521982846871?text=Olá!%20Tenho%20interesse%20na%20Landing%20Page."
+                       target="_blank"
+                       class="btn btn-outline-primary mt-auto">
+                        Contratar
+                    </a>
                 </div>
             </div>
+
+            <!-- SITE PROFISSIONAL -->
             <div class="col-md-4">
-                <div class="card p-4 h-100">
-                    <i class="bi bi-server display-6 text-success"></i>
-                    <h5 class="fw-bold mt-3">Back-end</h5>
-                    <p>PHP, Laravel, APIs REST</p>
+                <div class="card p-4 h-100 text-center d-flex border border-primary">
+                    <span class="badge bg-primary mb-3">Mais Vendido</span>
+
+                    <h5 class="fw-bold">Site Profissional</h5>
+                    <p class="text-muted">Presença digital completa</p>
+
+                    <h3 class="fw-bold text-primary my-3">R$ 997</h3>
+
+                    <ul class="list-unstyled text-start">
+                        <li>✔ Até 5 páginas</li>
+                        <li>✔ Design personalizado</li>
+                        <li>✔ SEO básico</li>
+                        <li>✔ WhatsApp e formulário</li>
+                        <li>✔ Orientação de hospedagem</li>
+                    </ul>
+
+                    <a href="https://wa.me/5521982846871?text=Olá!%20Tenho%20interesse%20no%20Site%20Profissional."
+                       target="_blank"
+                       class="btn btn-primary mt-auto">
+                        Quero este plano
+                    </a>
                 </div>
             </div>
+
+            <!-- SISTEMA / CRM -->
             <div class="col-md-4">
-                <div class="card p-4 h-100">
-                    <i class="bi bi-database display-6 text-warning"></i>
-                    <h5 class="fw-bold mt-3">Banco de Dados</h5>
-                    <p>MySQL, Modelagem e Segurança</p>
+                <div class="card p-4 h-100 text-center d-flex">
+                    <h5 class="fw-bold">Sistema / CRM</h5>
+                    <p class="text-muted">Automação e gestão empresarial</p>
+
+                    <h3 class="fw-bold text-primary my-3">Sob Consulta</h3>
+
+                    <ul class="list-unstyled text-start">
+                        <li>✔ Sistema sob medida</li>
+                        <li>✔ Login e permissões</li>
+                        <li>✔ Banco de dados</li>
+                        <li>✔ Segurança e backups</li>
+                        <li>✔ Suporte técnico</li>
+                    </ul>
+
+                    <a href="https://wa.me/5521982846871?text=Olá!%20Tenho%20interesse%20em%20um%20Sistema%20ou%20CRM."
+                       target="_blank"
+                       class="btn btn-outline-primary mt-auto">
+                        Solicitar orçamento
+                    </a>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 
-<!-- PROJETOS -->
-<section id="projetos">
-    <div class="container">
-        <h2 class="section-title text-center fw-bold mb-5">Projetos</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card p-4 h-100">
-                    <h5 class="fw-bold">CRM Médico</h5>
-                    <p>Sistema completo para clínicas.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100">
-                    <h5 class="fw-bold">CRM de lanchonetes</h5>
-                    <p>Sistema de gestão de relacionamento com clientes voltado para lanchonetes, 
-                        hamburguerias, pastelarias e delivery, com o objetivo de organizar vendas, 
-                        fidelizar clientes e aumentar o faturamento.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100">
-                    <h5 class="fw-bold">Criação de Landing pages</h5>
-                    <p>Rapidas responsivas e focadas no resultado.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100">
-                    <h5 class="fw-bold">E-commerce</h5>
-                    <p>Plataforma digital para venda de produtos ou serviços pela internet, 
-                        com pagamentos online e gestão de pedidos.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100">
-                    <h5 class="fw-bold">Plataforma Empresarial</h5>
-                    <p>Gestão e automação corporativa.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- CTA -->
+<section class="text-center">
+<div class="container">
+<h2 class="fw-bold mb-4">Pronto para transformar sua ideia em resultado?</h2>
+<a href="#contato" class="btn btn-primary btn-lg">
+<i class="bi bi-whatsapp"></i> Falar Agora
+</a>
+</div>
 </section>
 
 <!-- CONTATO -->
 <section id="contato" class="bg-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-
-                <h2 class="section-title text-center fw-bold mb-4">Entre em Contato</h2>
-
-                <form id="contactForm" class="card p-4">
-                    
-                    <div class="mb-3">
-                        <label class="form-label">Nome</label>
-                        <input type="text" name="nome" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">E-mail</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Mensagem</label>
-                        <textarea name="mensagem" rows="5" class="form-control" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-lg w-100">
-                        <i class="bi bi-send"></i> Enviar Mensagem
-                    </button>
-
-                    <p id="formStatus" class="text-center mt-3"></p>
-
-                </form>
-
-            </div>
-        </div>
-    </div>
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-8">
+<h2 class="section-title fw-bold mb-4">Solicite um Orçamento</h2>
+<form class="card p-4">
+<input class="form-control mb-3" placeholder="Nome" required>
+<input class="form-control mb-3" placeholder="E-mail" required>
+<textarea class="form-control mb-3" rows="4" placeholder="Mensagem" required></textarea>
+<button class="btn btn-primary btn-lg w-100">Enviar Mensagem</button>
+</form>
+</div>
+</div>
+</div>
 </section>
 
-<script>
-    const form = document.getElementById("contactForm");
-    const status = document.getElementById("formStatus");
-
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const data = new FormData(form);
-
-        try {
-            const response = await fetch("https://formspree.io/f/xwvovkby", {
-                method: "POST",
-                body: data,
-                headers: { "Accept": "application/json" }
-            });
-
-            if (response.ok) {
-                status.innerHTML = "<span class='text-success'>Mensagem enviada com sucesso!</span>";
-                form.reset();
-            } else {
-                status.innerHTML = "<span class='text-danger'>Erro ao enviar a mensagem.</span>";
-            }
-        } catch (error) {
-            status.innerHTML = "<span class='text-danger'>Falha de conexão.</span>";
-        }
-    });
-</script>
-
-<!-- FOOTER -->
 <footer class="py-4 text-center">
-    <p class="mb-0">© 2026 • Anderson Melo</p>
+<p class="mb-0">© 2026 • Anderson Melo</p>
 </footer>
-<!-- BOTÃO WHATSAPP FIXO -->
-<a href="https://wa.me/5521982846871?text=Olá!%20Tenho%20interesse."
-   class="whatsapp-fixo"
-   target="_blank"
-   aria-label="WhatsApp">
 
-    <i class="bi bi-whatsapp"></i>
+<a href="https://wa.me/5521982846871" class="whatsapp-fixo" target="_blank">
+<i class="bi bi-whatsapp"></i>
 </a>
-<!-- Bootstrap JS -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- GSAP -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-<!-- SCRIPT DE ANIMAÇÕES -->
-<script>
-    gsap.registerPlugin(ScrollTrigger);
-
-    // HERO
-    gsap.from(".hero h1", {
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        ease: "power4.out"
-    });
-
-    gsap.from(".hero p", {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        delay: 0.3
-    });
-
-    gsap.from(".hero a", {
-        scale: 0.8,
-        opacity: 0,
-        duration: 0.6,
-        delay: 0.6,
-        stagger: 0.2,
-        ease: "back.out(1.7)"
-    });
-
-    // TÍTULOS
-    gsap.utils.toArray(".section-title").forEach(title => {
-        gsap.from(title, {
-            scrollTrigger: {
-                trigger: title,
-                start: "top 90%"
-            },
-            y: 30,
-            opacity: 0,
-            duration: 0.6
-        });
-    });
-
-    // CARDS
-    gsap.utils.toArray(".card").forEach(card => {
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: "top 85%"
-            },
-            y: 50,
-            opacity: 0,
-            duration: 0.8
-        });
-    });
-
-    // NAVBAR
-    ScrollTrigger.create({
-        start: 80,
-        onEnter: () => gsap.to(".navbar", {
-            boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
-            duration: 0.3
-        }),
-        onLeaveBack: () => gsap.to(".navbar", {
-            boxShadow: "none",
-            duration: 0.3
-        })
-    });
-
-    document.querySelectorAll(".card").forEach(card => {
-
-        card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = ((y - centerY) / centerY) * 8;
-            const rotateY = ((x - centerX) / centerX) * 8;
-
-            card.style.transform = `
-                perspective(800px)
-                rotateX(${-rotateX}deg)
-                rotateY(${rotateY}deg)
-                translateY(-6px)
-            `;
-
-            card.style.setProperty("--x", `${x}px`);
-            card.style.setProperty("--y", `${y}px`);
-        });
-
-        card.addEventListener("mouseleave", () => {
-            card.style.transform = `
-                perspective(800px)
-                rotateX(0)
-                rotateY(0)
-                translateY(0)
-            `;
-        });
-
-    });
-
-</script>
-
 </body>
 </html>
