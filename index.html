@@ -212,6 +212,116 @@ footer{
         transform: none;
     }
 }
+    
+/* CHATBOT */
+.chatbot-fab{
+    position:fixed;
+    bottom:100px;
+    right:20px;
+    background:#0d6efd;
+    color:#fff;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    cursor:pointer;
+    z-index:999;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+#chatbot{
+    position:fixed;
+    bottom:170px;
+    right:20px;
+    width:320px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:999;
+}
+
+.chatbot-header{
+    background:#0d6efd;
+    color:#fff;
+    padding:12px 16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.chatbot-header button{
+    background:none;
+    border:none;
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.chatbot-messages{
+    padding:15px;
+    height:240px;
+    overflow-y:auto;
+    font-size:14px;
+}
+
+.chatbot-messages .bot{
+    background:#f1f1f1;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.chatbot-messages .user{
+    background:#0d6efd;
+    color:#fff;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:10px;
+    text-align:right;
+}
+
+.chatbot-options{
+    padding:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+.chatbot-options button{
+    flex:1 1 45%;
+    border:none;
+    background:#e9ecef;
+    padding:6px;
+    border-radius:8px;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.chatbot-input{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+
+.chatbot-input input{
+    flex:1;
+    border:none;
+    padding:10px;
+    outline:none;
+}
+
+.chatbot-input button{
+    background:#0d6efd;
+    border:none;
+    color:#fff;
+    padding:0 16px;
+    cursor:pointer;
+}
 </style>
 </head>
 
@@ -497,11 +607,189 @@ Soluções técnicas para manter sua empresa segura, produtiva e estável.
 <footer class="py-4 text-center">
 <p class="mb-0">© 2026 • Anderson Melo</p>
 </footer>
-
+    <!--
 <a href="https://wa.me/5521982846871" class="whatsapp-fixo" target="_blank">
 <i class="bi bi-whatsapp"></i>
-</a>
+</a>-->
+    
+<!-- CHATBOT -->
+<div id="chatbot">
+    <div class="chatbot-header">
+        <strong>Atendimento Online</strong>
+        <button onclick="toggleChatbot()">✕</button>
+    </div>
 
+    <div class="chatbot-messages" id="chatbotMessages">
+        <div class="bot">
+            👋 Olá! Sou o assistente virtual do Anderson.<br><br>
+            Como posso te ajudar?
+        </div>
+    </div>
+
+    <div class="chatbot-options">
+        <button onclick="sendQuick('Preços e Planos')">💰 Preços</button>
+        <button onclick="sendQuick('Quero um site')">🌐 Quero um site</button>
+        <button onclick="sendQuick('Landing Page')">📈 Landing Page</button>
+        <button onclick="sendQuick('Falar no WhatsApp')">📲 WhatsApp</button>
+    </div>
+
+    <div class="chatbot-input">
+        <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+        <button onclick="sendMessage()">➤</button>
+    </div>
+</div>
+
+<!-- BOTÃO FLUTUANTE CHAT -->
+<div class="chatbot-fab" onclick="toggleChatbot()">
+    💬
+</div>
+<script>
+const messages = document.getElementById('chatbotMessages');
+
+function toggleChatbot(){
+    const bot = document.getElementById('chatbot');
+    bot.style.display = bot.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function addMessage(text, type){
+    const div = document.createElement('div');
+    div.className = type;
+    div.innerHTML = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function sendQuick(text){
+    addMessage(text, 'user');
+    botReply(text);
+}
+
+function sendMessage(){
+    const input = document.getElementById('chatInput');
+    if(!input.value.trim()) return;
+    addMessage(input.value, 'user');
+    botReply(input.value);
+    input.value = '';
+}
+
+/* NORMALIZA TEXTO (remove acentos) */
+function normalize(text){
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
+function botReply(rawText){
+    const text = normalize(rawText);
+
+    setTimeout(() => {
+
+        /* SAUDAÇÕES */
+        if(
+            text.includes('oi') ||
+            text.includes('ola') ||
+            text.includes('bom dia') ||
+            text.includes('boa tarde') ||
+            text.includes('boa noite')
+        ){
+            addMessage(
+                "👋 Olá! Posso te ajudar com:<br>• Preços<br>• Sites<br>• Landing Pages<br>• Sistemas / CRM<br>• Orçamento",
+                'bot'
+            );
+        }
+
+        /* PREÇOS / VALORES */
+        else if(
+            text.includes('preco') ||
+            text.includes('valor') ||
+            text.includes('plano') ||
+            text.includes('quanto custa')
+        ){
+            addMessage(
+                "💰 <strong>Valores:</strong><br>• Landing Page: <b>R$ 497</b><br>• Site Profissional: <b>R$ 997</b><br>• Sistema / CRM: <b>Sob consulta</b>",
+                'bot'
+            );
+        }
+
+        /* LANDING PAGE */
+        else if(text.includes('landing')){
+            addMessage(
+                "📈 <strong>Landing Pages</strong><br>Ideais para anúncios, vendas e captação de leads.<br><br>Quer um orçamento agora?",
+                'bot'
+            );
+        }
+
+        /* SITE */
+        else if(
+            text.includes('site') ||
+            text.includes('website') ||
+            text.includes('pagina')
+        ){
+            addMessage(
+                "🌐 <strong>Sites Profissionais</strong><br>Design moderno, responsivo e otimizado para conversão.<br><br>Posso te explicar os planos 😉",
+                'bot'
+            );
+        }
+
+        /* SISTEMA / CRM */
+        else if(
+            text.includes('sistema') ||
+            text.includes('crm') ||
+            text.includes('automacao')
+        ){
+            addMessage(
+                "⚙️ <strong>Sistemas / CRM</strong><br>Projetos sob medida para gestão, automação e controle.<br><br>Esses projetos são personalizados.",
+                'bot'
+            );
+        }
+
+        /* MANUTENÇÃO */
+        else if(
+            text.includes('manutencao') ||
+            text.includes('suporte')
+        ){
+            addMessage(
+                "🛠️ Ofereço <strong>manutenção e suporte</strong> para sites e sistemas já em produção.",
+                'bot'
+            );
+        }
+
+        /* PRAZO */
+        else if(
+            text.includes('prazo') ||
+            text.includes('tempo') ||
+            text.includes('demora')
+        ){
+            addMessage(
+                "⏱️ <strong>Prazos médios:</strong><br>• Landing Page: 5 a 7 dias<br>• Site Profissional: 10 a 20 dias<br>• Sistemas: conforme escopo",
+                'bot'
+            );
+        }
+
+        /* CONTATO / WHATSAPP */
+        else if(
+            text.includes('whatsapp') ||
+            text.includes('contato') ||
+            text.includes('falar')
+        ){
+            window.open(
+                "https://wa.me/5521982846871?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento.",
+                "_blank"
+            );
+        }
+
+        /* FALLBACK INTELIGENTE */
+        else{
+            addMessage(
+                "🤖 Não entendi totalmente, mas posso ajudar com:<br>• Preços<br>• Sites<br>• Landing Pages<br>• Sistemas<br><br>Ou clique em <b>WhatsApp</b> para falar direto.",
+                'bot'
+            );
+        }
+
+    }, 500);
+}
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
